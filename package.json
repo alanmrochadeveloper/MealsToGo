@@ -22,7 +22,8 @@
     "eslint": "^8.51.0",
     "eslint-plugin-prettier": "^5.0.1",
     "prettier": "^3.0.3",
-    "react-native-paper": "^5.10.6"
+    "react-native-paper": "^5.10.6",
+    "styled-components": "^6.1.0"
   },
   "private": true
 }
