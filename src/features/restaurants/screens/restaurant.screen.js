@@ -10,7 +10,7 @@ const androidStatusBarHeight = (value = 0) => StatusBar.currentHeight + value;
 export const RestaurantScreen = () => {
   const SafeAreaContainer = styled.SafeAreaView`
     flex: 1;
-    background-color: #fff;
+    background-color: ${({ theme }) => theme.colors.white};
   `;
 
   const SearchbarContainer = styled.View`
@@ -20,12 +20,12 @@ export const RestaurantScreen = () => {
   `;
 
   const SearchBar = styled(Searchbar)`
-    border-radius: 10px;
+    border-radius: ${({ theme }) => theme.space[1]};
   `;
 
   const List = styled.View`
     flex: 1;
-    padding: 10px;
+    padding: ${({ theme }) => theme.space[3]};
   `;
 
   return (

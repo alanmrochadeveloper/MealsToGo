@@ -4,15 +4,16 @@ import styled from "styled-components";
 
 export const RestaurantInfoCard = ({ restaurant = {} }) => {
   const RestaurantCardCover = styled(Card.Cover)`
-    padding: 20px;
+    padding: ${({ theme }) => theme.space[3]};
   `;
 
   const RestaurantCard = styled(Card)`
-    background: white;
+    background-color: white;
   `;
 
   const RestaurantCardTitle = styled(Card.Title)`
-    background-color: aqua;
+    background-color: transparent;
+    font-family: ${({ theme }) => theme.fonts.body};
   `;
 
   const {
@@ -29,7 +30,10 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
   return (
     <RestaurantCard elevation={5}>
       <RestaurantCardCover source={{ uri: photos[0] }} />
-      <RestaurantCardTitle title={name} />
+      <RestaurantCardTitle
+        title={name}
+        // style={{ fontFamily: "Oswald_400Regular" }}
+      />
     </RestaurantCard>
   );
 };
