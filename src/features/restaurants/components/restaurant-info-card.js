@@ -1,8 +1,26 @@
 import React from "react";
+import { Text } from "react-native";
 import { Card } from "react-native-paper";
 import styled from "styled-components";
+import {
+  Oswald_400Regular,
+  useFonts as useOswaldFonts,
+} from "@expo-google-fonts/oswald";
+import {
+  Lato_400Regular,
+  useFonts as useLatoFonts,
+} from "@expo-google-fonts/lato";
 
 export const RestaurantInfoCard = ({ restaurant = {} }) => {
+  const [OswaldLoaded] = useOswaldFonts({
+    Oswald_400Regular,
+  });
+  const [LatoLoaded] = useLatoFonts({
+    Lato_400Regular,
+  });
+  if (!OswaldLoaded && !LatoLoaded) {
+    return null;
+  }
   const RestaurantCardCover = styled(Card.Cover)`
     padding: ${({ theme }) => theme.space[3]};
   `;
@@ -11,9 +29,19 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
     background-color: white;
   `;
 
-  const RestaurantCardTitle = styled(Card.Title)`
+  const RestaurantCardTitle = styled(Text)`
+    background-color: transparent;
+    font-family: ${({ theme }) => theme.fonts.heading};
+  `;
+
+  const RestaurantCardAddress = styled(Text)`
     background-color: transparent;
     font-family: ${({ theme }) => theme.fonts.body};
+    font-size: ${({ theme }) => theme.fontSizes.caption};
+  `;
+
+  const Info = styled.View`
+    padding: ${({ theme }) => theme.space[3]};
   `;
 
   const {
@@ -30,10 +58,10 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
   return (
     <RestaurantCard elevation={5}>
       <RestaurantCardCover source={{ uri: photos[0] }} />
-      <RestaurantCardTitle
-        title={name}
-        // style={{ fontFamily: "Oswald_400Regular" }}
-      />
+      <Info>
+        <RestaurantCardTitle>{name}</RestaurantCardTitle>
+        <RestaurantCardAddress>{address}</RestaurantCardAddress>
+      </Info>
     </RestaurantCard>
   );
 };
