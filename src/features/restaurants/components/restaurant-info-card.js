@@ -10,6 +10,8 @@ import {
   Lato_400Regular,
   useFonts as useLatoFonts,
 } from "@expo-google-fonts/lato";
+import { SvgXml } from "react-native-svg";
+import star from "../../../assets/star";
 
 export const RestaurantInfoCard = ({ restaurant = {} }) => {
   const [OswaldLoaded] = useOswaldFonts({
@@ -61,6 +63,7 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
       <Info>
         <RestaurantCardTitle>{name}</RestaurantCardTitle>
         <RestaurantCardAddress>{address}</RestaurantCardAddress>
+        <SvgXml xml={star} />
       </Info>
     </RestaurantCard>
   );
