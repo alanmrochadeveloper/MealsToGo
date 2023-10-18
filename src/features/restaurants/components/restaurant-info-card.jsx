@@ -1,5 +1,5 @@
 import React from "react";
-import { Text } from "react-native";
+import { Text, View } from "react-native";
 import { Card } from "react-native-paper";
 import styled from "styled-components";
 import {
@@ -46,6 +46,12 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
     padding: ${({ theme }) => theme.space[3]};
   `;
 
+  const Rating = styled.View`
+    margin-top: ${({ theme }) => theme.space[2]};
+    margin-bottom: ${({ theme }) => theme.space[2]};
+    flex-direction: row;
+  `;
+
   const {
     name = "test 3",
     icon = "https://images.freeimages.com/images/large-previews/510/trash-icon-1525880.jpg",
@@ -57,13 +63,22 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
     rating = 5,
     isClosedTemporarily = false,
   } = restaurant;
+
+  const ratings = Array.from(new Array(Math.floor(rating)));
+
+  const rate = () =>
+    ratings.map(() => <SvgXml xml={star} width={20} height={20} />);
   return (
     <RestaurantCard elevation={5}>
       <RestaurantCardCover source={{ uri: photos[0] }} />
       <Info>
         <RestaurantCardTitle>{name}</RestaurantCardTitle>
+        <Rating>
+          {ratings.map(() => (
+            <SvgXml xml={star} width={20} height={20} />
+          ))}
+        </Rating>
         <RestaurantCardAddress>{address}</RestaurantCardAddress>
-        <SvgXml xml={star} />
       </Info>
     </RestaurantCard>
   );
